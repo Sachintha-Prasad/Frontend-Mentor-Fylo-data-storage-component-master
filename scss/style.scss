@@ -1,0 +1,227 @@
+// google font link 
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+// variable 
+    // font family
+    $font-primary: 'Raleway', sans-serif;
+
+    // colors
+        // primary
+        $Gradient: hsl(6, 100%, 80%) to hsl(335, 100%, 65%);
+
+        // neutral 
+        $Pale-Blue: hsl(243, 100%, 93%);
+        $Grayish-Blue: hsl(229, 7%, 55%);
+        $Dark-Blue: hsl(228, 56%, 26%);
+        $Very-Dark-Blue: hsl(229, 57%, 11%);
+
+// reset 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    min-height: 100vh;
+    color: $Pale-Blue;
+    font-family: $font-primary;
+    background-color: $Very-Dark-Blue;
+    background-image: url('/images/bg-desktop.png');
+    background-repeat: no-repeat;
+    background-size: 100vw 50vh;
+    background-position: bottom center;
+}
+
+// content 
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    width: min(90%, 80rem);
+    animation: slidein 1s ease-in-out;
+}
+
+.header-container {
+    background-color: $Dark-Blue;
+    padding: 3rem 10rem 3rem 3rem;
+    border-radius: .5rem 7rem .5rem .5rem;
+
+    display: grid;
+    grid-template-columns: min(90%, 3.1rem) min(90%, 3.1rem) min(90%, 3.1rem);
+    row-gap: 3rem;
+    column-gap: 1.5rem;
+
+    & img {
+        grid-column: 1 / 4;
+        width: min(100%, 9rem);
+    }
+
+    .icon {
+        background-color: $Very-Dark-Blue;
+        padding: .8rem;
+        border-radius: .5rem;
+        width: 3.4rem;
+        cursor: pointer;
+
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & img {
+            width: 1.5rem;
+        }
+    }
+}
+
+.status-container {
+    background-color: $Dark-Blue;
+    border-radius: .5rem;
+    align-self: flex-end;
+    padding: 2rem;
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 1.5rem;
+
+    & p {
+        font-size: 1.4rem;
+
+        & span {
+            font-weight: 700;
+        }
+    }
+
+    .massage-block {
+        position: absolute;
+        background-color: white;
+        padding: 1rem;
+        top: -30%;
+        right: 2rem;
+        border-radius: .5rem;
+        font-size: 1rem;
+        text-transform: uppercase;
+        color: $Very-Dark-Blue;
+
+        & span {
+            font-size: 2.4rem;
+            font-weight: 700;
+        }
+    }
+
+    .massage-block::after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 0;
+        bottom: -20%;
+        right: 0%;
+        z-index: 0;
+        border-left: 2rem solid transparent;
+        border-top: 2rem solid white;
+    }
+
+    .status-bar {
+        background-color: $Very-Dark-Blue;
+        border-radius: 3rem;
+        padding: .2rem;
+        max-height: 1.6rem;
+        overflow: hidden;
+
+        .status-bar-fill {
+            width: 80%;
+            height: 100%;
+            border-radius: 3rem;
+            background: linear-gradient(45deg, rgb(255, 163, 153), rgb(255, 77, 151));
+            position: relative;
+            animation: statusFill 2s ease-in-out;
+        }
+
+        .status-bar-fill::after {
+            position: absolute;
+            right: 0;
+            content: "";
+            width: 1.2rem;
+            height: 100%;
+            border-radius: 50%;
+            background-color: white;
+        }
+    }
+
+    .status-range {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        & p {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+    }
+}
+
+// animation
+@keyframes statusFill {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 80%;
+    }
+}
+
+@keyframes slidein {
+    0% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// media queary 
+@media (max-width: 768px) {
+    .container {
+        width: min(90%, 40rem);
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 375px) {
+    body {
+        background-image: url('/images/bg-mobile.png');
+        background-size: 100vw 100vh;
+    }
+
+    .status-container {
+        .massage-block {
+            top: 80%;
+            right: 35%;
+        }
+
+        .massage-block::after {
+            display: none;
+        }
+    }
+}
+
